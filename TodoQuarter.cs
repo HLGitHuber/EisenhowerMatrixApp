@@ -35,6 +35,11 @@ namespace EisenhowerMain {
         {
             return TodoItems[index];
         }
+
+        public List<TodoItem> GetItems()
+        {
+            return TodoItems;
+        }
     }
 
 }
