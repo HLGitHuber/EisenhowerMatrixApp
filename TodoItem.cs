@@ -18,6 +18,11 @@ public class TodoItem
     {
         return Title;
     }
+
+    public DateTime GetDeadline()
+    {
+        return Deadline;
+    }
     
 }
 
