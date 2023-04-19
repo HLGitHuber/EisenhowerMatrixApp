@@ -23,7 +23,13 @@ namespace EisenhowerMain {
             TodoItems.RemoveAt(index);
         }
         
-        
+        public void ArchiveItems()
+        {
+            foreach (var todoItem in TodoItems)
+            {
+                if (todoItem.IsDone) TodoItems.Remove(todoItem);
+            }
+        }
     }
 
 }
