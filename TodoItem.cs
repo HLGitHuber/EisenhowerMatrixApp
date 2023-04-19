@@ -23,7 +23,11 @@ public class TodoItem
     {
         return Deadline;
     }
-    
+
+    private void Mark()
+    {
+        IsDone = true;
+    }
 }
 
 }
