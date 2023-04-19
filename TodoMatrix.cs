@@ -1,6 +1,6 @@
 using System;
 
-namespace EisenhowerCore
+namespace EisenhowerMain
 {
     public class TodoMatrix {
 

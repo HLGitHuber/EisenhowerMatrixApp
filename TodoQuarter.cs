@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EisenhowerCore { 
+namespace EisenhowerMain { 
 
     public class TodoQuarter {
 
