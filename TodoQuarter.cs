@@ -40,6 +40,18 @@ namespace EisenhowerMain {
         {
             return TodoItems;
         }
+
+        public override string ToString()
+        {
+            string stringList = "";
+            foreach (var todoItem in TodoItems)
+            {
+                stringList += todoItem.ToString();
+                stringList += Environment.NewLine;
+            }
+
+            return stringList;
+        }
     }
 
 }
