@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EisenhowerMain { 
@@ -25,9 +26,9 @@ namespace EisenhowerMain {
         
         public void ArchiveItems()
         {
-            foreach (var todoItem in TodoItems)
+            foreach (var todoItem in TodoItems.Where(todoItem => todoItem.IsDone))
             {
-                if (todoItem.IsDone) TodoItems.Remove(todoItem);
+                TodoItems.Remove(todoItem);
             }
         }
 
