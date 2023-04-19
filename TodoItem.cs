@@ -1,46 +1,47 @@
 using System;
 
-namespace EisenhowerMain {
-public class TodoItem
+namespace EisenhowerMain 
 {
-    private string Title { get; set; }
-    private DateTime Deadline { get; set; }
-    private bool IsDone { get; set; }
-
-    public TodoItem(string title, DateTime deadline)
+    public class TodoItem
     {
-        this.Title = title;
-        this.Deadline = deadline;
-        this.IsDone = false;
-    }
+        private string Title { get; set; }
+        private DateTime Deadline { get; set; }
+        private bool IsDone { get; set; }
 
-    public string GetTitle()
-    {
-        return Title;
-    }
+        public TodoItem(string title, DateTime deadline)
+        {
+            this.Title = title;
+            this.Deadline = deadline;
+            this.IsDone = false;
+        }
 
-    public DateTime GetDeadline()
-    {
-        return Deadline;
-    }
+        public string GetTitle()
+        {
+            return Title;
+        }
 
-    private void Mark()
-    {
-        IsDone = true;
-    }
+        public DateTime GetDeadline()
+        {
+            return Deadline;
+        }
 
-    private void Unmark()
-    {
-        IsDone = false;
-    }
+        private void Mark()
+        {
+            IsDone = true;
+        }
 
-    public override string ToString()
-    {
-        char mark = ' ';
-        if (IsDone) mark = 'x';
+        private void Unmark()
+        {
+            IsDone = false;
+        }
 
-        return $"[{mark}] {Deadline} {Title}";
+        public override string ToString()
+        {
+            char mark = ' ';
+            if (IsDone) mark = 'x';
+
+            return $"[{mark}] {Deadline} {Title}";
+        }
     }
-}
 
 }
