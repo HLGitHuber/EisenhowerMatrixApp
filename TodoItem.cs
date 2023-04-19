@@ -13,9 +13,12 @@ public class TodoItem
         this.Deadline = deadline;
         this.IsDone = false;
     }
-    
-    
 
+    public string GetTitle()
+    {
+        return Title;
+    }
+    
 }
 
 }
