@@ -30,6 +30,11 @@ namespace EisenhowerMain {
                 if (todoItem.IsDone) TodoItems.Remove(todoItem);
             }
         }
+
+        public TodoItem GetItem(int index)
+        {
+            return TodoItems[index];
+        }
     }
 
 }
