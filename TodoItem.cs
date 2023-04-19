@@ -33,6 +33,14 @@ public class TodoItem
     {
         IsDone = false;
     }
+
+    public override string ToString()
+    {
+        char mark = ' ';
+        if (IsDone) mark = 'x';
+
+        return $"[{mark}] {Deadline} {Title}";
+    }
 }
 
 }
