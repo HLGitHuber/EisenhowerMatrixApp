@@ -37,10 +37,13 @@ namespace EisenhowerMain
 
         public override string ToString()
         {
+            int day = Deadline.Day;
+            int month = Deadline.Month;
             char mark = ' ';
+            
             if (IsDone) mark = 'x';
 
-            return $"[{mark}] {Deadline} {Title}";
+            return $"[{mark}] {day}-{month} {Title}";
         }
     }
 
