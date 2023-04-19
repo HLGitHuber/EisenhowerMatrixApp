@@ -6,7 +6,7 @@ namespace EisenhowerMain
     {
         private string Title { get; set; }
         private DateTime Deadline { get; set; }
-        private bool IsDone { get; set; }
+        public bool IsDone { get; set; }
 
         public TodoItem(string title, DateTime deadline)
         {
