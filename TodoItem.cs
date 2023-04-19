@@ -25,12 +25,12 @@ namespace EisenhowerMain
             return Deadline;
         }
 
-        private void Mark()
+        public void Mark()
         {
             IsDone = true;
         }
 
-        private void Unmark()
+        public void Unmark()
         {
             IsDone = false;
         }
