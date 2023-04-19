@@ -28,6 +28,11 @@ public class TodoItem
     {
         IsDone = true;
     }
+
+    private void Unmark()
+    {
+        IsDone = false;
+    }
 }
 
 }
