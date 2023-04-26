@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EisenhowerMain
 {
@@ -15,6 +16,16 @@ namespace EisenhowerMain
                 { "NU", new TodoQuarter() },
                 { "NN", new TodoQuarter() }
             };
+        }
+
+        public Dictionary<string, TodoQuarter> GetQuarters()
+        {
+            return TodoQuarters;
+        }
+
+        public TodoQuarter GetQuarter(string status)
+        {
+            return TodoQuarters[status];
         }
     }
 
