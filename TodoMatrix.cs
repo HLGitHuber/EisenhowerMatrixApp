@@ -27,6 +27,16 @@ namespace EisenhowerMain
         {
             return TodoQuarters[status];
         }
+
+        public void AddItem(string title, DateTime deadline, bool isImportant = false)
+        {
+            bool isUrgent = deadline.AddDays(3) <= DateTime.Now;
+            
+            if (isImportant && isUrgent) TodoQuarters["IU"].AddItem(title, deadline);
+            if (isImportant && !isUrgent) TodoQuarters["IN"].AddItem(title, deadline);
+            if (!isImportant && isUrgent) TodoQuarters["NU"].AddItem(title, deadline);
+            if (!isImportant && !isUrgent) TodoQuarters["NN"].AddItem(title, deadline);
+        }
     }
 
 }
