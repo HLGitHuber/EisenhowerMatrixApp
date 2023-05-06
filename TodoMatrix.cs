@@ -33,7 +33,7 @@ namespace EisenhowerMain
 
         public void AddItem(string title, DateTime deadline, bool isImportant = false)
         {
-            bool isUrgent = deadline.AddDays(3) <= DateTime.Now;
+            bool isUrgent = deadline <= DateTime.Now.AddDays(3);
 
             if (isImportant && isUrgent) TodoQuarters["IU"].AddItem(title, deadline);
             if (isImportant && !isUrgent) TodoQuarters["IN"].AddItem(title, deadline);
@@ -88,7 +88,7 @@ namespace EisenhowerMain
             sb.AppendLine("Important but Not Urgent:");
             sb.AppendLine(TodoQuarters["IN"].ToString());
             sb.AppendLine("Urgent but Not Important:");
-            sb.AppendLine(TodoQuarters["UN"].ToString());
+            sb.AppendLine(TodoQuarters["NU"].ToString());
             sb.AppendLine("Not Important and Not Urgent:");
             sb.AppendLine(TodoQuarters["NN"].ToString());
             return sb.ToString();

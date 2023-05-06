@@ -24,7 +24,7 @@ namespace EisenhowerMain
         {
             Console.WriteLine("Choose item by its number");
             var index = Console.ReadLine();
-            return int.Parse(index);
+            return int.Parse(index) - 1;
         }
 
         public string AskForStatus()
