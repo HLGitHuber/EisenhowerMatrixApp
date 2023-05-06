@@ -70,5 +70,42 @@ namespace EisenhowerMain
             return isImportant != "" && isImportant != " ";
         }
     }
+    public void SaveItemsToFile(string fileName)
+    {
+        using (var writer = new StreamWriter(fileName + ".csv", false, Encoding.UTF8))
+        {
+            foreach (var quarter in Quarters)
+            { 
+                foreach (var item in quarter.TodoItems)
+                {                  
+                    writer.WriteLine("{0}|{1:dd-MM}|{2}", item.Title, item.Date, item.IsImportant ? "is it important ? " : "");
+                }
+            }
+        }
+    }
+
+    public void ArchiveItems()
+    {
+        foreach (var quarter in todoQuarters.Values)
+        {
+            quarter.todoItem.RemoveAll(item => item.IsDone);
+        }
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("TODO:");
+        sb.AppendLine("Important and Urgent:");
+        sb.AppendLine(todoQuarters["IU"].ToString());
+        sb.AppendLine("Important but Not Urgent:");
+        sb.AppendLine(todoQuarters["IN"].ToString());
+        sb.AppendLine("Urgent but Not Important:");
+        sb.AppendLine(todoQuarters["UN"].ToString());
+        sb.AppendLine("Not Important and Not Urgent:");
+        sb.AppendLine(todoQuarters["NN"].ToString());
+        return sb.ToString();
+    }
+
 
 }
