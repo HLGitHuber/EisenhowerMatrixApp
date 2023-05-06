@@ -257,32 +257,33 @@ __Instance methods__
 
   This method should be overloaded so as to accept two parameters only. In that case, isImportant should be `false` by default.
 
-* `AddItemsFromFile(string fileName)`
 
-  Reads data from *fileName.csv* file and appends *TodoItem* objects to attributes *todoItems* in the properly *TodoQuarter* objects.
-  Every item is written in a separate line the following format:
+        * `AddItemsFromFile(string fileName)`
 
-  `title|day-month|is_important`
+          Reads data from *fileName.csv* file and appends *TodoItem* objects to attributes *todoItems* in the properly *TodoQuarter* objects.
+          Every item is written in a separate line the following format:
 
-  If *isImportant* is equal to false then last element is an empty string. Otherwise the last element is an arbitrary string.
-  If the last element of line is an empty string, *isImportant* is equal to false - it means that the item should be assigned to a not important TODO quarter. Otherwise item should be assign to an important TODO quarter.
+          `title|day-month|is_important`
 
-* `SaveItemsToFile(string fileName)`
+          If *isImportant* is equal to false then last element is an empty string. Otherwise the last element is an arbitrary string.
+          If the last element of line is an empty string, *isImportant* is equal to false - it means that the item should be assigned to a not important TODO quarter. Otherwise item should be assign to an important TODO quarter.
 
-  Writes all details about TODO items to *fileName.csv* file
-  Every item is written in a separate line the following format:
+        * `SaveItemsToFile(string fileName)`
 
-  `title|day-month|is_important`
+          Writes all details about TODO items to *fileName.csv* file
+          Every item is written in a separate line the following format:
 
-  If *IsImportant* contains false then the last element of line should be an empty string. Otherwise last element is an arbitrary string.
+          `title|day-month|is_important`
 
-* `ArchiveItems()`
+          If *IsImportant* contains false then the last element of line should be an empty string. Otherwise last element is an arbitrary string.
 
-  Removes all *TodoItem* objects with a parameter *isDone* set to *true* from list *todoItems* in every element of dictionary *todoQuarters*
+        * `ArchiveItems()`
 
-* `ToString()`
+          Removes all *TodoItem* objects with a parameter *isDone* set to *true* from list *todoItems* in every element of dictionary *todoQuarters*
 
-  Returns a todoQuarters list (an Eisenhower todoMatrix) formatted to string.
+        * `ToString()`
+
+          Returns a todoQuarters list (an Eisenhower todoMatrix) formatted to string.
 
 
 ## Running program
