@@ -30,7 +30,7 @@ namespace EisenhowerMain
         public string AskForStatus()
         {
             Console.WriteLine("Choose one of the statuses ('IU', 'IN', 'NU', 'NN')");
-            return Console.ReadLine();
+            return Console.ReadLine().ToUpper();
         }
 
         public string AskForTitle()
@@ -49,7 +49,7 @@ namespace EisenhowerMain
         public bool AskForImportance()
         {
             Console.WriteLine("Is it important? (Y/N)");
-            var userInput = Console.ReadLine();
+            var userInput = Console.ReadLine().ToUpper();
             return userInput == "Y";
         }
     }
