@@ -16,6 +16,7 @@ namespace EisenhowerMain
             bool exit = false;
             while (!exit)
             {
+                Console.Clear();
                 Console.WriteLine(matrix.ToString());
                 display.ShowMenu();
                 
