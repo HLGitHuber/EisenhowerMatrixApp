@@ -65,7 +65,7 @@ namespace EisenhowerMain
                     {
                         bool isImportant = quarter.Key == "IU" || quarter.Key == "IN";
                         var isImportantString = GetIsImportantString(isImportant);
-                        writer.WriteLine("{0}|{1:dd-MM}|{2}", item.GetTitle(), item.GetDeadline(), isImportantString);
+                        writer.WriteLine("{0},{1:dd-MM},{2}", item.GetTitle(), item.GetDeadline(), isImportantString);
                     }
                 }
             }
