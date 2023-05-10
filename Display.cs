@@ -20,37 +20,29 @@ namespace EisenhowerMain
 
         public void NotImplementedYet() => Console.WriteLine("Not implemented yet");
 
-        public int AskForIndex()
+        public void AskForIndex()
         {
             Console.WriteLine("Choose item by its number");
-            var index = Console.ReadLine();
-            return int.Parse(index) - 1;
         }
 
-        public string AskForStatus()
+        public void AskForStatus()
         {
             Console.WriteLine("Choose one of the statuses ('IU', 'IN', 'NU', 'NN')");
-            return Console.ReadLine().ToUpper();
         }
 
-        public string AskForTitle()
+        public void AskForTitle()
         {
             Console.WriteLine("Put in the title:");
-            return Console.ReadLine();
         }
 
-        public DateTime AskForDeadline()
+        public void AskForDeadline()
         {
             Console.WriteLine("Put in the deadline (dd-MM)");
-            var parsedDate = DateTime.Parse(Console.ReadLine());
-            return parsedDate;
         }
 
-        public bool AskForImportance()
+        public void AskForImportance()
         {
             Console.WriteLine("Is it important? (Y/N)");
-            var userInput = Console.ReadLine().ToUpper();
-            return userInput == "Y";
         }
     }
 }

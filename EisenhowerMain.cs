@@ -12,6 +12,7 @@ namespace EisenhowerMain
             var FILENAME = "list";
             var matrix = new TodoMatrix();
             var display = new Display();
+            var input = new Input();
             
             bool exit = false;
             while (!exit)
@@ -32,22 +33,31 @@ namespace EisenhowerMain
                         display.NotImplementedYet();
                         break;
                     case "3":
-                        var title = display.AskForTitle();
-                        var deadline = display.AskForDeadline();
-                        var isImportant = display.AskForImportance();
+                        display.AskForTitle();
+                        var title = input.GetString();
+                        display.AskForDeadline();
+                        var deadline = input.GetDeadline();
+                        display.AskForImportance();
+                        var isImportant = input.GetImportance();
                         matrix.AddItem(title, deadline, isImportant);
                         break;
                     case "4":
-                        quarter = matrix.GetQuarter(display.AskForStatus());
-                        quarter.GetItem(display.AskForIndex()).Mark();
+                        display.AskForStatus();
+                        quarter = matrix.GetQuarter(input.GetStringUpper());
+                        display.AskForIndex();
+                        quarter.GetItem(input.GetInt()-1).Mark();
                         break;
                     case "5":
-                        quarter = matrix.GetQuarter(display.AskForStatus());
-                        quarter.GetItem(display.AskForIndex()).Unmark();
+                        display.AskForStatus();
+                        quarter = matrix.GetQuarter(input.GetStringUpper());
+                        display.AskForIndex();
+                        quarter.GetItem(input.GetInt()-1).Unmark();
                         break;
                     case "6":
-                        quarter = matrix.GetQuarter(display.AskForStatus());
-                        quarter.RemoveItem(display.AskForIndex());
+                        display.AskForStatus();
+                        quarter = matrix.GetQuarter(input.GetStringUpper());
+                        display.AskForIndex();
+                        quarter.RemoveItem(input.GetInt()-1);
                         break;
                     case "7":
                         matrix.ArchiveItems();
