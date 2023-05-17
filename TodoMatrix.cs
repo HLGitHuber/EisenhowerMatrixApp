@@ -21,15 +21,9 @@ namespace EisenhowerMain
             };
         }
 
-        public Dictionary<string, TodoQuarter> GetQuarters()
-        {
-            return TodoQuarters;
-        }
+        public Dictionary<string, TodoQuarter> GetQuarters() => TodoQuarters;
 
-        public TodoQuarter GetQuarter(string status)
-        {
-            return TodoQuarters[status];
-        }
+        public TodoQuarter GetQuarter(string status) => TodoQuarters[status];
 
         public void AddItem(TodoItem item)
         {

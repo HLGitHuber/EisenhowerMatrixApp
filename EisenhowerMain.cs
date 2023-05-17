@@ -68,7 +68,10 @@ namespace EisenhowerMain
                         display.AskForStatus();
                         quarter = matrix.GetQuarter(input.GetStringUpper());
                         display.AskForIndex();
-                        quarter.RemoveItem(input.GetInt()-1);
+                        var userInput = input.GetInt();
+                        item = quarter.GetItem(userInput - 1);
+                        DeleteItemFromDb(item, itemDao);
+                        quarter.RemoveItem(userInput-1);
                         break;
                     case "7":
                         matrix.ArchiveItems();
@@ -91,6 +94,11 @@ namespace EisenhowerMain
         public static void AddItemToDb(TodoItem item, IItemDao dao)
         {
             dao.Add(item);
+        }
+
+        public static void DeleteItemFromDb(TodoItem item, IItemDao dao)
+        {
+            dao.Delete(item);
         }
     }
 }

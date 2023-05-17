@@ -4,6 +4,7 @@ namespace EisenhowerMain
 {
     public class TodoItem
     {
+        private int Id { get; set; }
         private string Title { get; set; }
         private DateTime Deadline { get; set; }
         
@@ -18,6 +19,10 @@ namespace EisenhowerMain
             this.Important = important;
         }
 
+        public int GetId() => Id;
+
+        public void SetId(int id) => this.Id = id;
+        
         public string GetTitle() => Title;
 
         public DateTime GetDeadline() => Deadline;

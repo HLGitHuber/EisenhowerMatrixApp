@@ -8,6 +8,8 @@ public interface IItemDao
 
     public void Update(TodoItem item);
 
+    public void Delete(TodoItem item);
+
     public TodoItem Get(int id);
 
     List<TodoItem> GetAll();
