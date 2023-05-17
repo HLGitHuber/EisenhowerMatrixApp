@@ -79,8 +79,6 @@ namespace EisenhowerMain
                     case "9":
                         matrix.AddItemsFromFile(FILENAME);
                         break;
-                    case "10":
-                        break;
                     case "0":
                         exit = true;
                         matrix.ArchiveItems();
