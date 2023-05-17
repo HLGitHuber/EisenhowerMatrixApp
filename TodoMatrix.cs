@@ -31,14 +31,16 @@ namespace EisenhowerMain
             return TodoQuarters[status];
         }
 
-        public void AddItem(string title, DateTime deadline, bool isImportant = false)
+        public void AddItem(TodoItem item)
         {
+            var isImportant = item.GetImportance();
+            var deadline = item.GetDeadline();
             bool isUrgent = deadline <= DateTime.Now.AddDays(3);
 
-            if (isImportant && isUrgent) TodoQuarters["IU"].AddItem(title, deadline);
-            if (isImportant && !isUrgent) TodoQuarters["IN"].AddItem(title, deadline);
-            if (!isImportant && isUrgent) TodoQuarters["NU"].AddItem(title, deadline);
-            if (!isImportant && !isUrgent) TodoQuarters["NN"].AddItem(title, deadline);
+            if (isImportant && isUrgent) TodoQuarters["IU"].AddItem(item);
+            if (isImportant && !isUrgent) TodoQuarters["IN"].AddItem(item);
+            if (!isImportant && isUrgent) TodoQuarters["NU"].AddItem(item);
+            if (!isImportant && !isUrgent) TodoQuarters["NN"].AddItem(item);
         }
 
         public void AddItemsFromFile(string fileName)
@@ -51,7 +53,8 @@ namespace EisenhowerMain
                 var title = columns[0];
                 var deadline = ParseDateToDateTime(columns[1]);
                 var isImportant = CheckIfIsImportant(columns[2]);
-                AddItem(title, deadline, isImportant);
+                var item = new TodoItem(title, deadline, isImportant);
+                AddItem(item);
             }
         }
 
@@ -77,6 +80,11 @@ namespace EisenhowerMain
             {
                 quarter.GetItems().RemoveAll(item => item.IsDone);
             }
+        }
+
+        public void SaveItemsToDatabase()
+        {
+            
         }
 
         public override string ToString()
