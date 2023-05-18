@@ -25,14 +25,14 @@ namespace EisenhowerMain
             bool exit = false;
             while (!exit)
             {
-                Console.Clear();
-                Console.WriteLine(matrix.ToString());
-                display.ShowMenu();
-                
-                string menuInput = Console.ReadLine();
                 TodoQuarter quarter;
                 TodoItem item;
                 
+                Console.Clear();
+                Console.WriteLine(matrix.ToString());
+                display.ShowMenu();
+                string menuInput = Console.ReadLine();
+
                 switch (menuInput)
                 {
                     case "1":
