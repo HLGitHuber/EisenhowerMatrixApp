@@ -39,13 +39,7 @@ namespace EisenhowerMain
                         exit = true;
                         break;
                     case "2":
-                        display.AskForTitle();
-                        var title = input.GetString();
-                        display.AskForDeadline();
-                        var deadline = input.GetDeadline();
-                        display.AskForImportance();
-                        var isImportant = input.GetImportance();
-                        item = new TodoItem(title, deadline, isImportant);
+                        item = NewItem(display, input);
                         AddItemToDb(item, itemDao);
                         matrix.AddItem(item);
                         break;
@@ -108,6 +102,18 @@ namespace EisenhowerMain
         public static void SwitchMarkInDb(TodoItem item, IItemDao dao)
         {
             dao.MarkUpdate(item);
+        }
+
+        public static TodoItem NewItem(Display display, Input input)
+        {
+            display.AskForTitle();
+            var title = input.GetString();
+            display.AskForDeadline();
+            var deadline = input.GetDeadline();
+            display.AskForImportance();
+            var isImportant = input.GetImportance();
+            var item = new TodoItem(title, deadline, isImportant);
+            return item;
         }
     }
 }
