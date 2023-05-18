@@ -8,7 +8,7 @@ public interface IItemDao
 
     public void MarkUpdate(TodoItem item);
 
-    public void Delete(List<int> itemIds);
+    public void Delete(TodoItem item);
 
     public TodoItem Get(int id);
 

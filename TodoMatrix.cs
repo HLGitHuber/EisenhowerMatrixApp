@@ -76,10 +76,10 @@ namespace EisenhowerMain
             foreach (var quarter in TodoQuarters.Values)
             {
                 var doneItemsList = quarter.GetItems().FindAll(item => item.IsDone);
-                idsList.AddRange(doneItemsList.Select(item => item.GetId()));
+                foreach (var todoItem in doneItemsList) dao.Delete(todoItem);
+                
                 quarter.GetItems().RemoveAll(item => item.IsDone);
             }
-            dao.Delete(idsList);
         }
 
         public void AddItemsFromDb(IItemDao dao)
