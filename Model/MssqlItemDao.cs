@@ -81,7 +81,7 @@ WHERE id = @id;
         }
     }
 
-    public void Delete(List<int> itemIds)
+    public void Delete(TodoItem item)
     {
         try
         {
@@ -93,14 +93,12 @@ WHERE id = @id;
             string sql =
                 @"
 DELETE FROM items 
-WHERE id IN (@ids);
+WHERE id = @id;
 ";
             
             command.CommandText = sql;
 
-            string idsString = string.Join(", ", itemIds);
-            
-            command.Parameters.AddWithValue("@ids", idsString);
+            command.Parameters.AddWithValue("@id", item.GetId());
 
             command.ExecuteNonQuery();
         }

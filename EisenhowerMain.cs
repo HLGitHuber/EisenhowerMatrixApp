@@ -105,9 +105,7 @@ namespace EisenhowerMain
 
         public static void DeleteItemFromDb(TodoItem item, IItemDao dao)
         {
-            var idlist = new List<int>();
-            idlist.Add(item.GetId());
-            dao.Delete(idlist);
+            dao.Delete(item);
         }
 
         public static void SwitchMarkInDb(TodoItem item, IItemDao dao)
