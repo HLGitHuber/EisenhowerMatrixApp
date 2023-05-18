@@ -13,9 +13,8 @@ namespace EisenhowerMain {
             this.TodoItems = new List<TodoItem>();
         }
 
-        public void AddItem(string title, DateTime deadline)
+        public void AddItem(TodoItem item)
         {
-            var item = new TodoItem(title, deadline);
             TodoItems.Add(item);
         }
 

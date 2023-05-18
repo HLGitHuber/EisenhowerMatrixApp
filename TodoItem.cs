@@ -4,36 +4,34 @@ namespace EisenhowerMain
 {
     public class TodoItem
     {
+        private int Id { get; set; }
         private string Title { get; set; }
         private DateTime Deadline { get; set; }
+        
+        private bool Important { get; set; }
         public bool IsDone { get; set; }
 
-        public TodoItem(string title, DateTime deadline)
+        public TodoItem(string title, DateTime deadline, bool important = false)
         {
             this.Title = title;
             this.Deadline = deadline;
             this.IsDone = false;
+            this.Important = important;
         }
 
-        public string GetTitle()
-        {
-            return Title;
-        }
+        public int GetId() => Id;
 
-        public DateTime GetDeadline()
-        {
-            return Deadline;
-        }
+        public void SetId(int id) => this.Id = id;
+        
+        public string GetTitle() => Title;
 
-        public void Mark()
-        {
-            IsDone = true;
-        }
+        public DateTime GetDeadline() => Deadline;
 
-        public void Unmark()
-        {
-            IsDone = false;
-        }
+        public bool GetImportance() => Important;
+
+        public void Mark() => IsDone = true;
+
+        public void Unmark() => IsDone = false;
 
         public override string ToString()
         {

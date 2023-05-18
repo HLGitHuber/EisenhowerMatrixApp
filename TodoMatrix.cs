@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using EisenhowerMain.Model;
 
 
 namespace EisenhowerMain
@@ -21,24 +23,20 @@ namespace EisenhowerMain
             };
         }
 
-        public Dictionary<string, TodoQuarter> GetQuarters()
-        {
-            return TodoQuarters;
-        }
+        public Dictionary<string, TodoQuarter> GetQuarters() => TodoQuarters;
 
-        public TodoQuarter GetQuarter(string status)
-        {
-            return TodoQuarters[status];
-        }
+        public TodoQuarter GetQuarter(string status) => TodoQuarters[status];
 
-        public void AddItem(string title, DateTime deadline, bool isImportant = false)
+        public void AddItem(TodoItem item)
         {
+            var isImportant = item.GetImportance();
+            var deadline = item.GetDeadline();
             bool isUrgent = deadline <= DateTime.Now.AddDays(3);
 
-            if (isImportant && isUrgent) TodoQuarters["IU"].AddItem(title, deadline);
-            if (isImportant && !isUrgent) TodoQuarters["IN"].AddItem(title, deadline);
-            if (!isImportant && isUrgent) TodoQuarters["NU"].AddItem(title, deadline);
-            if (!isImportant && !isUrgent) TodoQuarters["NN"].AddItem(title, deadline);
+            if (isImportant && isUrgent) TodoQuarters["IU"].AddItem(item);
+            if (isImportant && !isUrgent) TodoQuarters["IN"].AddItem(item);
+            if (!isImportant && isUrgent) TodoQuarters["NU"].AddItem(item);
+            if (!isImportant && !isUrgent) TodoQuarters["NN"].AddItem(item);
         }
 
         public void AddItemsFromFile(string fileName)
@@ -51,7 +49,8 @@ namespace EisenhowerMain
                 var title = columns[0];
                 var deadline = ParseDateToDateTime(columns[1]);
                 var isImportant = CheckIfIsImportant(columns[2]);
-                AddItem(title, deadline, isImportant);
+                var item = new TodoItem(title, deadline, isImportant);
+                AddItem(item);
             }
         }
 
@@ -71,12 +70,23 @@ namespace EisenhowerMain
             }
         }
 
-        public void ArchiveItems()
+        public void ArchiveItems(IItemDao dao)
         {
+            var idsList = new List<int>();
             foreach (var quarter in TodoQuarters.Values)
             {
+                var doneItemsList = quarter.GetItems().FindAll(item => item.IsDone);
+                idsList.AddRange(doneItemsList.Select(item => item.GetId()));
                 quarter.GetItems().RemoveAll(item => item.IsDone);
             }
+            dao.Delete(idsList);
+        }
+
+        public void AddItemsFromDb(IItemDao dao)
+        {
+            var todoItems = dao.GetAll();
+            foreach (var item in todoItems) AddItem(item);
+            
         }
 
         public override string ToString()

@@ -15,34 +15,21 @@ namespace EisenhowerMain
                               "7. Archive items (remove all done) \n" +
                               "8. Save items to file \n" +
                               "9. Load items from file \n" +
+                              "10. Load items from database \n" +
                               "0. Archive, save and exit \n");
         }
 
         public void NotImplementedYet() => Console.WriteLine("Not implemented yet");
 
-        public void AskForIndex()
-        {
-            Console.WriteLine("Choose item by its number");
-        }
+        public void AskForIndex() => Console.WriteLine("Choose item by its number");
 
-        public void AskForStatus()
-        {
-            Console.WriteLine("Choose one of the statuses ('IU', 'IN', 'NU', 'NN')");
-        }
+        public void AskForStatus() => Console.WriteLine("Choose one of the statuses ('IU', 'IN', 'NU', 'NN')");
 
-        public void AskForTitle()
-        {
-            Console.WriteLine("Put in the title:");
-        }
+        public void AskForTitle() => Console.WriteLine("Put in the title:");
 
-        public void AskForDeadline()
-        {
-            Console.WriteLine("Put in the deadline (dd-MM)");
-        }
+        public void AskForDeadline() => Console.WriteLine("Put in the deadline (dd-MM)");
 
-        public void AskForImportance()
-        {
-            Console.WriteLine("Is it important? (Y/N)");
-        }
+        public void AskForImportance() => Console.WriteLine("Is it important? (Y/N)");
+        
     }
 }
