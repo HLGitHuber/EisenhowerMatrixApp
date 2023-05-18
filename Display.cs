@@ -7,15 +7,14 @@ namespace EisenhowerMain
         public void ShowMenu()
         {
             Console.WriteLine("\n1. Quit \n" +
-                              "2. Choose status of shown TODO items \n" +
-                              "3. Add item \n" +
-                              "4. Mark item \n" +
-                              "5. Unmark item \n" +
-                              "6. Remove item \n" +
-                              "7. Archive items (remove all done) \n" +
-                              "8. Save items to file \n" +
-                              "9. Load items from file \n" +
-                              "10. Load items from database \n" +
+                              "2. Add item \n" +
+                              "3. Mark item \n" +
+                              "4. Unmark item \n" +
+                              "5. Remove item \n" +
+                              "6. Archive items (remove all done) \n" +
+                              "7. Save items to file \n" +
+                              "8. Load items from file \n" +
+                              "9. Load items from database \n" +
                               "0. Archive, save and exit \n");
         }
 

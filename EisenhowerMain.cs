@@ -39,9 +39,6 @@ namespace EisenhowerMain
                         exit = true;
                         break;
                     case "2":
-                        display.NotImplementedYet();
-                        break;
-                    case "3":
                         display.AskForTitle();
                         var title = input.GetString();
                         display.AskForDeadline();
@@ -52,7 +49,7 @@ namespace EisenhowerMain
                         AddItemToDb(item, itemDao);
                         matrix.AddItem(item);
                         break;
-                    case "4":
+                    case "3":
                         display.AskForStatus();
                         quarter = matrix.GetQuarter(input.GetStringUpper());
                         display.AskForIndex();
@@ -60,7 +57,7 @@ namespace EisenhowerMain
                         item.Mark();
                         SwitchMarkInDb(item, itemDao);
                         break;
-                    case "5":
+                    case "4":
                         display.AskForStatus();
                         quarter = matrix.GetQuarter(input.GetStringUpper());
                         display.AskForIndex();
@@ -68,7 +65,7 @@ namespace EisenhowerMain
                         item.Unmark();
                         SwitchMarkInDb(item, itemDao);
                         break;
-                    case "6":
+                    case "5":
                         display.AskForStatus();
                         quarter = matrix.GetQuarter(input.GetStringUpper());
                         display.AskForIndex();
@@ -77,16 +74,16 @@ namespace EisenhowerMain
                         DeleteItemFromDb(item, itemDao);
                         quarter.RemoveItem(userInput-1);
                         break;
-                    case "7":
+                    case "6":
                         matrix.ArchiveItems(itemDao);
                         break;
-                    case "8":
+                    case "7":
                         matrix.SaveItemsToFile(FILENAME);
                         break;
-                    case "9":
+                    case "8":
                         matrix.AddItemsFromFile(FILENAME);
                         break;
-                    case "10":
+                    case "9":
                         matrix.AddItemsFromDb(itemDao);
                         break;
                     case "0":
