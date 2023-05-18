@@ -6,9 +6,9 @@ public interface IItemDao
 {
     public void Add(TodoItem item);
 
-    public void Update(TodoItem item);
+    public void MarkUpdate(TodoItem item);
 
-    public void Delete(TodoItem item);
+    public void Delete(List<int> itemIds);
 
     public TodoItem Get(int id);
 

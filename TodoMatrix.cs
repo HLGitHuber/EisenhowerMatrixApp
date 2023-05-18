@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using EisenhowerMain.Model;
 
 
 namespace EisenhowerMain
@@ -68,16 +70,22 @@ namespace EisenhowerMain
             }
         }
 
-        public void ArchiveItems()
+        public void ArchiveItems(IItemDao dao)
         {
+            var idsList = new List<int>();
             foreach (var quarter in TodoQuarters.Values)
             {
+                var doneItemsList = quarter.GetItems().FindAll(item => item.IsDone);
+                idsList.AddRange(doneItemsList.Select(item => item.GetId()));
                 quarter.GetItems().RemoveAll(item => item.IsDone);
             }
+            dao.Delete(idsList);
         }
 
-        public void SaveItemsToDatabase()
+        public void AddItemsFromDb(IItemDao dao)
         {
+            var todoItems = dao.GetAll();
+            foreach (var item in todoItems) AddItem(item);
             
         }
 

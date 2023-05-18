@@ -15,6 +15,7 @@ namespace EisenhowerMain
                               "7. Archive items (remove all done) \n" +
                               "8. Save items to file \n" +
                               "9. Load items from file \n" +
+                              "10. Load items from database \n" +
                               "0. Archive, save and exit \n");
         }
 

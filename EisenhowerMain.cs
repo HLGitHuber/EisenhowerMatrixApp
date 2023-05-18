@@ -56,13 +56,17 @@ namespace EisenhowerMain
                         display.AskForStatus();
                         quarter = matrix.GetQuarter(input.GetStringUpper());
                         display.AskForIndex();
-                        quarter.GetItem(input.GetInt()-1).Mark();
+                        item = quarter.GetItem(input.GetInt()-1);
+                        item.Mark();
+                        SwitchMarkInDb(item, itemDao);
                         break;
                     case "5":
                         display.AskForStatus();
                         quarter = matrix.GetQuarter(input.GetStringUpper());
                         display.AskForIndex();
-                        quarter.GetItem(input.GetInt()-1).Unmark();
+                        item = quarter.GetItem(input.GetInt()-1);
+                        item.Unmark();
+                        SwitchMarkInDb(item, itemDao);
                         break;
                     case "6":
                         display.AskForStatus();
@@ -74,7 +78,7 @@ namespace EisenhowerMain
                         quarter.RemoveItem(userInput-1);
                         break;
                     case "7":
-                        matrix.ArchiveItems();
+                        matrix.ArchiveItems(itemDao);
                         break;
                     case "8":
                         matrix.SaveItemsToFile(FILENAME);
@@ -82,9 +86,12 @@ namespace EisenhowerMain
                     case "9":
                         matrix.AddItemsFromFile(FILENAME);
                         break;
+                    case "10":
+                        matrix.AddItemsFromDb(itemDao);
+                        break;
                     case "0":
                         exit = true;
-                        matrix.ArchiveItems();
+                        matrix.ArchiveItems(itemDao);
                         matrix.SaveItemsToFile(FILENAME);
                         break;
                 }
@@ -98,7 +105,14 @@ namespace EisenhowerMain
 
         public static void DeleteItemFromDb(TodoItem item, IItemDao dao)
         {
-            dao.Delete(item);
+            var idlist = new List<int>();
+            idlist.Add(item.GetId());
+            dao.Delete(idlist);
+        }
+
+        public static void SwitchMarkInDb(TodoItem item, IItemDao dao)
+        {
+            dao.MarkUpdate(item);
         }
     }
 }
