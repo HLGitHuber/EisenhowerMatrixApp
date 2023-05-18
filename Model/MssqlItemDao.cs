@@ -93,12 +93,14 @@ WHERE id = @id;
             string sql =
                 @"
 DELETE FROM items 
-WHERE id IN @ids;
+WHERE id IN (@ids);
 ";
-            itemIds.Select(s => Tuple.Create(s, false)).ToList();
-            Console.WriteLine(itemIds);
+            
             command.CommandText = sql;
-            command.Parameters.AddWithValue("@ids", itemIds);
+
+            string idsString = string.Join(", ", itemIds);
+            
+            command.Parameters.AddWithValue("@ids", idsString);
 
             command.ExecuteNonQuery();
         }
