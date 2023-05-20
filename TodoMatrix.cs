@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using EisenhowerMain.Manager;
 using EisenhowerMain.Model;
 
 
@@ -70,21 +71,21 @@ namespace EisenhowerMain
             }
         }
 
-        public void ArchiveItems(IItemDao dao)
+        public void ArchiveItems(TodoDbManager manager)
         {
             var idsList = new List<int>();
             foreach (var quarter in TodoQuarters.Values)
             {
                 var doneItemsList = quarter.GetItems().FindAll(item => item.IsDone);
-                foreach (var todoItem in doneItemsList) dao.Delete(todoItem);
+                foreach (var todoItem in doneItemsList) manager.DeleteItemFromDb(todoItem);
                 
                 quarter.GetItems().RemoveAll(item => item.IsDone);
             }
         }
 
-        public void AddItemsFromDb(IItemDao dao)
+        public void AddItemsFromDb(TodoDbManager manager)
         {
-            var todoItems = dao.GetAll();
+            var todoItems = manager.GetAllItems();
             foreach (var item in todoItems) AddItem(item);
             
         }

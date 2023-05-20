@@ -11,10 +11,7 @@ namespace EisenhowerMain
         public static void Main(String[] args)
         {
             TodoDbManager manager = new TodoDbManager();
-            manager.Connect();
 
-            IItemDao itemDao = new MssqlItemDao(manager.ConnectionString);
-            
             //TODO make exceptions for false inputs
             
             var FILENAME = "list";
@@ -39,8 +36,8 @@ namespace EisenhowerMain
                         exit = true;
                         break;
                     case "2":
-                        item = NewItem(display, input);
-                        AddItemToDb(item, itemDao);
+                        item = GetNewItem(display, input);
+                        manager.AddItemToDb(item);
                         matrix.AddItem(item);
                         break;
                     case "3":
@@ -49,7 +46,7 @@ namespace EisenhowerMain
                         display.AskForIndex();
                         item = quarter.GetItem(input.GetInt()-1);
                         item.Mark();
-                        SwitchMarkInDb(item, itemDao);
+                        manager.SwitchMarkInDb(item);
                         break;
                     case "4":
                         display.AskForStatus();
@@ -57,7 +54,7 @@ namespace EisenhowerMain
                         display.AskForIndex();
                         item = quarter.GetItem(input.GetInt()-1);
                         item.Unmark();
-                        SwitchMarkInDb(item, itemDao);
+                        manager.SwitchMarkInDb(item);
                         break;
                     case "5":
                         display.AskForStatus();
@@ -65,11 +62,11 @@ namespace EisenhowerMain
                         display.AskForIndex();
                         var userInput = input.GetInt();
                         item = quarter.GetItem(userInput - 1);
-                        DeleteItemFromDb(item, itemDao);
+                        manager.DeleteItemFromDb(item);
                         quarter.RemoveItem(userInput-1);
                         break;
                     case "6":
-                        matrix.ArchiveItems(itemDao);
+                        matrix.ArchiveItems(manager);
                         break;
                     case "7":
                         matrix.SaveItemsToFile(FILENAME);
@@ -78,33 +75,18 @@ namespace EisenhowerMain
                         matrix.AddItemsFromFile(FILENAME);
                         break;
                     case "9":
-                        matrix.AddItemsFromDb(itemDao);
+                        matrix.AddItemsFromDb(manager);
                         break;
                     case "0":
                         exit = true;
-                        matrix.ArchiveItems(itemDao);
+                        matrix.ArchiveItems(manager);
                         matrix.SaveItemsToFile(FILENAME);
                         break;
                 }
             }
         }
 
-        public static void AddItemToDb(TodoItem item, IItemDao dao)
-        {
-            dao.Add(item);
-        }
-
-        public static void DeleteItemFromDb(TodoItem item, IItemDao dao)
-        {
-            dao.Delete(item);
-        }
-
-        public static void SwitchMarkInDb(TodoItem item, IItemDao dao)
-        {
-            dao.MarkUpdate(item);
-        }
-
-        public static TodoItem NewItem(Display display, Input input)
+        public static TodoItem GetNewItem(Display display, Input input)
         {
             display.AskForTitle();
             var title = input.GetString();
